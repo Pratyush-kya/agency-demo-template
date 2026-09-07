@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Menu, X, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -7,6 +8,7 @@ import { useState, useEffect } from "react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
 
   useEffect(() => {
@@ -14,6 +16,12 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
@@ -30,16 +38,55 @@ export default function Navbar() {
             </span>
           </Link>
           
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Home</Link>
-            <Link href="/services" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Services</Link>
-            <Link href="/contact" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Contact</Link>
+          <div className="hidden md:flex items-center gap-8 relative">
+            {links.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link key={link.name} href={link.href} className="relative px-3 py-2 text-sm font-medium transition-colors">
+                  <span className={`relative z-10 ${isActive ? "text-blue-700" : "text-gray-600 hover:text-blue-600"}`}>
+                    {link.name}
+                  </span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute inset-0 bg-blue-50 rounded-lg -z-0"
+                      transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
             <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg shadow-blue-600/30">
               Get Quote
             </motion.button>
           </div>
+
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-900">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
+      
+      {/* Mobile Menu */}
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl"
+        >
+          {links.map((link) => (
+            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-3 rounded-lg font-medium ${pathname === link.href ? "bg-blue-50 text-blue-700" : "text-gray-600 hover:bg-gray-50"}`}>
+              {link.name}
+            </Link>
+          ))}
+          <button className="w-full mt-4 bg-blue-600 text-white px-6 py-3 rounded-xl font-medium shadow-md">
+            Get Quote
+          </button>
+        </motion.div>
+      )}
     </nav>
   );
 }

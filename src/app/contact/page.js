@@ -5,14 +5,25 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 export default function Contact() {
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
     <div className="pt-32 pb-24 px-4 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
         {/* Left Side - Info */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
           className="space-y-8"
         >
           <div>
@@ -23,50 +34,54 @@ export default function Contact() {
           </div>
 
           <div className="space-y-6 pt-8 border-t border-gray-100">
-            <div className="flex items-center gap-4 text-lg">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0">
-                <Phone size={20} />
-              </div>
-              <span className="font-medium">(555) 123-4567</span>
-            </div>
-            <div className="flex items-center gap-4 text-lg">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0">
-                <Mail size={20} />
-              </div>
-              <span className="font-medium">hello@{companyName.toLowerCase().replace(/[^a-z]/g, '')}.com</span>
-            </div>
-            <div className="flex items-center gap-4 text-lg">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0">
-                <MapPin size={20} />
-              </div>
-              <span className="font-medium">Local Service Area</span>
-            </div>
+            {[
+              { icon: <Phone size={24} />, text: "(555) 123-4567" },
+              { icon: <Mail size={24} />, text: `hello@${companyName.toLowerCase().replace(/[^a-z]/g, '')}.com` },
+              { icon: <MapPin size={24} />, text: "Local Service Area" }
+            ].map((contactItem, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ x: 5 }}
+                className="flex items-center gap-4 text-lg cursor-pointer group"
+              >
+                <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                  {contactItem.icon}
+                </div>
+                <span className="font-medium group-hover:text-blue-600 transition-colors">{contactItem.text}</span>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
         {/* Right Side - Form */}
         <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-gray-200/40 border border-gray-100"
+          initial="hidden"
+          animate="show"
+          variants={container}
+          className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100"
         >
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label className="block text-sm font-semibold mb-2">Full Name</label>
-              <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="John Doe" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-2">Email Address</label>
-              <input type="email" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all" placeholder="john@example.com" />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold mb-2">Message</label>
-              <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none" placeholder="How can we help you?" />
-            </div>
-            <button className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-              Send Message <Send size={18} />
-            </button>
+            <motion.div variants={item}>
+              <label className="block text-sm font-semibold mb-2 text-gray-700">Full Name</label>
+              <input type="text" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="John Doe" />
+            </motion.div>
+            <motion.div variants={item}>
+              <label className="block text-sm font-semibold mb-2 text-gray-700">Email Address</label>
+              <input type="email" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="john@example.com" />
+            </motion.div>
+            <motion.div variants={item}>
+              <label className="block text-sm font-semibold mb-2 text-gray-700">Message</label>
+              <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none bg-gray-50 focus:bg-white" placeholder="How can we help you?" />
+            </motion.div>
+            <motion.div variants={item}>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-600/30 hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-4"
+              >
+                Send Message <Send size={18} />
+              </motion.button>
+            </motion.div>
           </form>
         </motion.div>
 
