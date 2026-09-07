@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Check, Settings, Tool, Wrench, Zap, Clock } from "lucide-react";
+import { Check, Settings, PenTool, Wrench, Zap, Clock } from "lucide-react";
 
 export default function Services() {
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
@@ -47,7 +47,7 @@ export default function Services() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         {[
-          { icon: <Tool size={24} />, title: "Installation & Setup", desc: "Expert deployment from day one.", span: "md:col-span-2 lg:col-span-2" },
+          { icon: <PenTool size={24} />, title: "Installation & Setup", desc: "Expert deployment from day one.", span: "md:col-span-2 lg:col-span-2" },
           { icon: <Wrench size={24} />, title: "Maintenance", desc: "Keep things running smoothly.", span: "col-span-1" },
           { icon: <Zap size={24} />, title: "Emergency Repairs", desc: "Fast fixes when you need them most.", span: "col-span-1" },
           { icon: <Clock size={24} />, title: "24/7 Support", desc: "Always here for you.", span: "md:col-span-2 lg:col-span-2", highlight: true },
