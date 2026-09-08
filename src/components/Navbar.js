@@ -29,11 +29,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.3 }}>
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
                 {companyName.charAt(0)}
               </div>
             </motion.div>
-            <span className={`font-bold text-xl tracking-tight ${scrolled ? "text-gray-900" : "text-gray-900"}`}>
+            <span className={`font-bold text-xl tracking-tight ${scrolled ? "text-slate-900" : "text-slate-900"}`}>
               {companyName}
             </span>
           </Link>
@@ -43,26 +43,26 @@ export default function Navbar() {
               const isActive = pathname === link.href;
               return (
                 <Link key={link.name} href={link.href} className="relative px-3 py-2 text-sm font-medium transition-colors">
-                  <span className={`relative z-10 ${isActive ? "text-blue-700" : "text-gray-600 hover:text-blue-600"}`}>
+                  <span className={`relative z-10 ${isActive ? "text-emerald-700" : "text-slate-600 hover:text-emerald-600"}`}>
                     {link.name}
                   </span>
                   {isActive && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute inset-0 bg-blue-50 rounded-lg -z-0"
+                      className="absolute inset-0 bg-emerald-50 rounded-lg -z-0"
                       transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                     />
                   )}
                 </Link>
               );
             })}
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg shadow-blue-600/30">
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-emerald-600 text-white px-6 py-2.5 rounded-full font-medium shadow-lg shadow-emerald-600/30">
               Get Quote
             </motion.button>
           </div>
 
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-900">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -78,11 +78,11 @@ export default function Navbar() {
           className="md:hidden bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl"
         >
           {links.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-3 rounded-lg font-medium ${pathname === link.href ? "bg-blue-50 text-blue-700" : "text-gray-600 hover:bg-gray-50"}`}>
+            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-3 rounded-lg font-medium ${pathname === link.href ? "bg-emerald-50 text-emerald-700" : "text-slate-600 hover:bg-slate-50"}`}>
               {link.name}
             </Link>
           ))}
-          <button className="w-full mt-4 bg-blue-600 text-white px-6 py-3 rounded-xl font-medium shadow-md">
+          <button className="w-full mt-4 bg-emerald-600 text-white px-6 py-3 rounded-xl font-medium shadow-md">
             Get Quote
           </button>
         </motion.div>

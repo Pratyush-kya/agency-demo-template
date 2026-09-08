@@ -26,7 +26,7 @@ export default function Services() {
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl font-extrabold mb-6"
+          className="text-5xl font-extrabold mb-6 text-slate-900"
         >
           Our Premium Services
         </motion.h1>
@@ -34,7 +34,7 @@ export default function Services() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-gray-600 max-w-2xl mx-auto"
+          className="text-xl text-slate-600 max-w-2xl mx-auto"
         >
           {companyName} offers a wide range of professional solutions tailored to meet your exact needs.
         </motion.p>
@@ -57,23 +57,23 @@ export default function Services() {
             key={i}
             variants={item}
             whileHover={{ scale: 1.02, translateY: -5 }}
-            className={`p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between min-h-[200px] overflow-hidden relative group ${service.span} ${service.highlight ? 'bg-gradient-to-br from-blue-600 to-indigo-700 text-white border-transparent' : 'bg-white'}`}
+            className={`p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between min-h-[200px] overflow-hidden relative group ${service.span} ${service.highlight ? 'bg-gradient-to-br from-emerald-600 to-teal-700 text-white border-transparent' : 'bg-white'}`}
           >
             {/* Background Glow */}
             {!service.highlight && (
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             )}
             
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative z-10 ${service.highlight ? 'bg-white/20 backdrop-blur-md' : 'bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300'}`}>
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative z-10 ${service.highlight ? 'bg-white/20 backdrop-blur-md' : 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300'}`}>
               {service.icon}
             </div>
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-              <p className={`mb-6 text-lg ${service.highlight ? 'text-blue-100' : 'text-gray-600'}`}>{service.desc}</p>
+              <h3 className={`text-2xl font-bold mb-3 ${service.highlight ? 'text-white' : 'text-slate-900'}`}>{service.title}</h3>
+              <p className={`mb-6 text-lg ${service.highlight ? 'text-emerald-50' : 'text-slate-600'}`}>{service.desc}</p>
               <ul className="space-y-3">
                 {[1, 2].map((_, j) => (
                   <li key={j} className="flex items-center gap-3 opacity-90">
-                    <div className={`flex items-center justify-center w-5 h-5 rounded-full ${service.highlight ? 'bg-white/20' : 'bg-blue-100 text-blue-600'}`}>
+                    <div className={`flex items-center justify-center w-5 h-5 rounded-full ${service.highlight ? 'bg-white/20' : 'bg-emerald-100 text-emerald-600'}`}>
                       <Check size={12} strokeWidth={3} />
                     </div>
                     <span className="font-medium">Premium execution</span>
