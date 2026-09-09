@@ -8,73 +8,90 @@ export default function Home() {
 
   const container = {
     hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+    show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } }
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 25 } }
   };
 
   return (
-    <div className="relative overflow-hidden pt-32 pb-16">
+    <div className="relative overflow-hidden pt-40 pb-32">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-emerald-100 blur-3xl opacity-50 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-teal-100 blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-[600px] h-[600px] rounded-full bg-teal-500/10 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial="hidden" 
-          animate="show" 
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
           variants={container}
-          className="text-center max-w-4xl mx-auto"
+          className="text-center max-w-5xl mx-auto"
         >
-          <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 font-medium text-sm mb-8 border border-emerald-100">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          <motion.div variants={item} className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium text-sm mb-12 border border-emerald-500/20 backdrop-blur-sm">
+            <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_12px_rgba(16,185,129,0.8)]"></span>
             Welcome to the future of your business
           </motion.div>
           
-          <motion.h1 variants={item} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 leading-tight">
-            Elevate <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">{companyName}</span> to the Next Level.
+          <motion.h1 variants={item} className="text-6xl md:text-8xl font-extrabold tracking-tighter text-white mb-10 leading-[1.1]">
+            Elevate <span className="text-transparent bg-clip-text bg-gradient-to-br from-emerald-400 to-teal-600">{companyName}</span> to the Next Level.
           </motion.h1>
           
-          <motion.p variants={item} className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Professional, reliable, and trusted by the community. We deliver excellence in every project we take on.
+          <motion.p variants={item} className="text-2xl text-slate-400 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
+            Professional, reliable, and trusted by the community. We deliver uncompromising excellence in every project we take on.
           </motion.p>
           
-          <motion.div variants={item} className="flex flex-col sm:flex-row justify-center gap-4">
+          <motion.div variants={item} className="flex flex-col sm:flex-row justify-center gap-6">
             <Link href="/services">
-              <button className="w-full sm:w-auto px-8 py-4 bg-emerald-600 text-white rounded-full font-bold shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                Explore Services <ArrowRight size={20} />
-              </button>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto px-10 py-5 bg-emerald-600 text-white rounded-full font-bold shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.5)] transition-all flex items-center justify-center gap-3 text-lg"
+              >
+                Explore Services <ArrowRight size={22} />
+              </motion.button>
             </Link>
             <Link href="/contact">
-              <button className="w-full sm:w-auto px-8 py-4 bg-slate-800 text-white border border-slate-700 rounded-full font-bold shadow-sm hover:border-emerald-500 hover:bg-slate-700 transition-all">
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto px-10 py-5 bg-white/5 text-white border border-white/10 rounded-full font-bold hover:bg-white/10 transition-all text-lg backdrop-blur-md"
+              >
                 Contact Us
-              </button>
+              </motion.button>
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Features Section */}
+        {/* Features Section - Bento Grid Style */}
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-          className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={container}
+          className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {[
-            { icon: <Shield className="w-8 h-8 text-emerald-500" />, title: "Fully Licensed", desc: "Certified professionals you can trust with your property." },
-            { icon: <Zap className="w-8 h-8 text-amber-500" />, title: "Lightning Fast", desc: "Quick response times and efficient project completion." },
-            { icon: <Star className="w-8 h-8 text-teal-500" />, title: "5-Star Quality", desc: "Top-rated service with hundreds of happy local customers." }
+            { icon: <Shield className="w-10 h-10 text-emerald-400" />, title: "Fully Licensed", desc: "Certified professionals you can trust with your property." },
+            { icon: <Zap className="w-10 h-10 text-emerald-400" />, title: "Lightning Fast", desc: "Quick response times and efficient project completion." },
+            { icon: <Star className="w-10 h-10 text-emerald-400" />, title: "5-Star Quality", desc: "Top-rated service with hundreds of happy local customers." }
           ].map((feature, i) => (
-            <div key={i} className="bg-slate-800 p-8 rounded-3xl shadow-sm border border-slate-700 hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 rounded-2xl bg-slate-700 flex items-center justify-center mb-6">
+            <motion.div 
+              key={i} 
+              variants={item}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              className="bg-slate-900/50 p-10 rounded-[2rem] border border-white/5 shadow-inner hover:bg-slate-900/80 transition-colors backdrop-blur-md relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:border-emerald-500/30 transition-colors">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
-              <p className="text-slate-300 leading-relaxed">{feature.desc}</p>
-            </div>
+              <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{feature.title}</h3>
+              <p className="text-slate-400 font-light leading-relaxed text-lg">{feature.desc}</p>
+            </motion.div>
           ))}
         </motion.div>
       </div>
