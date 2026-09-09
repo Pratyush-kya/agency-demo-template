@@ -46,7 +46,7 @@ export default function Services() {
           { icon: <PenTool size={28} />, title: "Installation & Setup", desc: "Expert deployment from day one.", span: "md:col-span-2 lg:col-span-2" },
           { icon: <Wrench size={28} />, title: "Maintenance", desc: "Keep things running smoothly.", span: "col-span-1" },
           { icon: <Zap size={28} />, title: "Emergency Repairs", desc: "Fast fixes when you need them most.", span: "col-span-1" },
-          { icon: <Clock size={28} />, title: "24/7 Support", desc: "Always here for you.", span: "md:col-span-2 lg:col-span-2", highlight: true },
+          { icon: <Clock size={28} />, title: "24/7 Support", desc: "Always here for you.", span: "md:col-span-2 lg:col-span-2" },
           { icon: <Settings size={28} />, title: "Custom Solutions", desc: "Tailored exactly to your unique requirements.", span: "md:col-span-3 lg:col-span-3" }
         ].map((service, i) => (
           <motion.div 
