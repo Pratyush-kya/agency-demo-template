@@ -59,14 +59,16 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <motion.button 
-              whileHover={{ scale: 1.05 }} 
-              whileTap={{ scale: 0.95 }} 
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="bg-white text-black px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-shadow text-sm tracking-wide uppercase"
-            >
-              Get Quote
-            </motion.button>
+            <Link href="/contact" passHref>
+              <motion.button 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }} 
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="bg-white text-black px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-shadow text-sm tracking-wide uppercase"
+              >
+                Get Quote
+              </motion.button>
+            </Link>
           </div>
 
           <div className="md:hidden">
@@ -95,9 +97,11 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <button className="w-full mt-6 bg-white text-black px-6 py-4 rounded-2xl font-bold shadow-lg uppercase tracking-wider">
-                Get Quote
-              </button>
+              <Link href="/contact" onClick={() => setIsOpen(false)} passHref>
+                <button className="w-full mt-6 bg-white text-black px-6 py-4 rounded-2xl font-bold shadow-lg uppercase tracking-wider">
+                  Get Quote
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}
