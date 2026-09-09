@@ -4,12 +4,15 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { getTheme } from "@/lib/theme";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
+  const themeName = process.env.NEXT_PUBLIC_THEME_COLOR || 'emerald';
+  const theme = getTheme(themeName);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -29,7 +32,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
             <motion.div whileHover={{ rotate: 180, scale: 1.1 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}>
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+              <div className={`w-12 h-12 bg-gradient-to-br ${theme.from500} ${theme.to700} rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl ${theme.shadowNavbar}`}>
                 {companyName.charAt(0)}
               </div>
             </motion.div>
@@ -43,7 +46,7 @@ export default function Navbar() {
               const isActive = pathname === link.href;
               return (
                 <Link key={link.name} href={link.href} className="relative px-4 py-2 text-sm font-bold tracking-wide transition-colors">
-                  <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-emerald-400" : "text-slate-400 hover:text-white"}`}>
+                  <span className={`relative z-10 transition-colors duration-300 ${isActive ? theme.text400 : "text-slate-400 hover:text-white"}`}>
                     {link.name}
                   </span>
                   {isActive && (
@@ -88,7 +91,7 @@ export default function Navbar() {
           >
             <div className="space-y-4">
               {links.map((link) => (
-                <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-6 py-4 rounded-2xl font-bold text-lg transition-colors ${pathname === link.href ? "bg-white/10 text-emerald-400 border border-white/10" : "text-slate-400 hover:bg-white/5 hover:text-white"}`}>
+                <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-6 py-4 rounded-2xl font-bold text-lg transition-colors ${pathname === link.href ? `bg-white/10 ${theme.text400} border border-white/10` : "text-slate-400 hover:bg-white/5 hover:text-white"}`}>
                   {link.name}
                 </Link>
               ))}

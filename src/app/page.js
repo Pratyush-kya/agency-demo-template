@@ -2,9 +2,12 @@
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Shield, Star, Zap } from "lucide-react";
 import Link from "next/link";
+import { getTheme } from "@/lib/theme";
 
 export default function Home() {
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
+  const themeName = process.env.NEXT_PUBLIC_THEME_COLOR || 'emerald';
+  const theme = getTheme(themeName);
 
   const container = {
     hidden: { opacity: 0 },
@@ -30,7 +33,7 @@ export default function Home() {
         >
           
           <motion.h1 variants={item} className="text-6xl md:text-8xl font-extrabold tracking-tighter text-white mb-10 leading-[1.1]">
-            Elevate <span className="text-transparent bg-clip-text bg-gradient-to-br from-emerald-400 to-teal-600">{companyName}</span> to the Next Level.
+            Elevate <span className={`text-transparent bg-clip-text bg-gradient-to-br ${theme.from400} ${theme.to600}`}>{companyName}</span> to the Next Level.
           </motion.h1>
           
           <motion.p variants={item} className="text-2xl text-slate-400 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
@@ -42,7 +45,7 @@ export default function Home() {
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-10 py-5 bg-emerald-600 text-white rounded-full font-bold transition-all flex items-center justify-center gap-3 text-lg"
+                className={`w-full sm:w-auto px-10 py-5 ${theme.bg600} text-white rounded-full font-bold transition-all flex items-center justify-center gap-3 text-lg`}
               >
                 Explore Services <ArrowRight size={22} />
               </motion.button>
@@ -68,9 +71,9 @@ export default function Home() {
           className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {[
-            { icon: <Shield className="w-10 h-10 text-emerald-400" />, title: "Fully Licensed", desc: "Certified professionals you can trust with your property." },
-            { icon: <Zap className="w-10 h-10 text-emerald-400" />, title: "Lightning Fast", desc: "Quick response times and efficient project completion." },
-            { icon: <Star className="w-10 h-10 text-emerald-400" />, title: "5-Star Quality", desc: "Top-rated service with hundreds of happy local customers." }
+            { icon: <Shield className={`w-10 h-10 ${theme.text400}`} />, title: "Fully Licensed", desc: "Certified professionals you can trust with your property." },
+            { icon: <Zap className={`w-10 h-10 ${theme.text400}`} />, title: "Lightning Fast", desc: "Quick response times and efficient project completion." },
+            { icon: <Star className={`w-10 h-10 ${theme.text400}`} />, title: "5-Star Quality", desc: "Top-rated service with hundreds of happy local customers." }
           ].map((feature, i) => (
             <motion.div 
               key={i} 
@@ -79,8 +82,8 @@ export default function Home() {
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               className="bg-slate-900/50 p-10 rounded-[2rem] border border-white/5 shadow-inner hover:bg-slate-900/80 transition-colors backdrop-blur-md relative overflow-hidden group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:border-emerald-500/30 transition-colors">
+              <div className={`absolute inset-0 bg-gradient-to-br ${theme.from500_5} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className={`w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 ${theme.groupHoverBorder500_30} transition-colors`}>
                 {feature.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{feature.title}</h3>

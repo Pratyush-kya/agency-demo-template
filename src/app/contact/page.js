@@ -1,9 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { getTheme } from "@/lib/theme";
 
 export default function Contact() {
   const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || "Your Business";
+  const themeName = process.env.NEXT_PUBLIC_THEME_COLOR || 'emerald';
+  const theme = getTheme(themeName);
 
   const container = {
     hidden: { opacity: 0 },
@@ -46,10 +49,10 @@ export default function Contact() {
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 className="flex items-center gap-6 text-xl cursor-pointer group"
               >
-                <div className="w-16 h-16 bg-white/5 border border-white/10 text-emerald-400 rounded-3xl flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/30 transition-colors duration-300">
+                <div className={`w-16 h-16 bg-white/5 border border-white/10 ${theme.text400} rounded-3xl flex items-center justify-center shrink-0 ${theme.groupHoverBg500_20} ${theme.groupHoverBorder500_30} transition-colors duration-300`}>
                   {contactItem.icon}
                 </div>
-                <span className="font-medium text-slate-300 group-hover:text-emerald-400 transition-colors">{contactItem.text}</span>
+                <span className={`font-medium text-slate-300 ${theme.groupHoverText400} transition-colors`}>{contactItem.text}</span>
               </motion.div>
             ))}
           </div>
@@ -63,27 +66,27 @@ export default function Contact() {
           variants={container}
           className="bg-slate-900/50 p-10 md:p-14 rounded-[3rem] shadow-2xl border border-white/10 backdrop-blur-xl relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-emerald-500/10 blur-[80px] pointer-events-none" />
+          <div className={`absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full ${theme.bg500_10} blur-[80px] pointer-events-none`} />
           
           <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
             <motion.div variants={item}>
               <label className="block text-sm font-semibold mb-3 text-slate-300 uppercase tracking-widest">Full Name</label>
-              <input type="text" className="w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg" placeholder="John Doe" />
+              <input type="text" className={`w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 ${theme.focusRing500} ${theme.focusBorder500} outline-none transition-all bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg`} placeholder="John Doe" />
             </motion.div>
             <motion.div variants={item}>
               <label className="block text-sm font-semibold mb-3 text-slate-300 uppercase tracking-widest">Email Address</label>
-              <input type="email" className="w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg" placeholder="john@example.com" />
+              <input type="email" className={`w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 ${theme.focusRing500} ${theme.focusBorder500} outline-none transition-all bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg`} placeholder="john@example.com" />
             </motion.div>
             <motion.div variants={item}>
               <label className="block text-sm font-semibold mb-3 text-slate-300 uppercase tracking-widest">Message</label>
-              <textarea rows={5} className="w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all resize-none bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg" placeholder="How can we help you?" />
+              <textarea rows={5} className={`w-full px-6 py-5 rounded-2xl border border-white/10 focus:ring-2 ${theme.focusRing500} ${theme.focusBorder500} outline-none transition-all resize-none bg-white/5 focus:bg-white/10 text-white placeholder-slate-500 text-lg`} placeholder="How can we help you?" />
             </motion.div>
             <motion.div variants={item}>
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                className="w-full py-5 bg-emerald-600 text-white rounded-2xl font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] transition-shadow flex items-center justify-center gap-3 mt-6 text-lg"
+                className={`w-full py-5 ${theme.bg600} text-white rounded-2xl font-bold ${theme.shadow30} ${theme.hoverShadow50} transition-shadow flex items-center justify-center gap-3 mt-6 text-lg`}
               >
                 Send Message <Send size={20} />
               </motion.button>
