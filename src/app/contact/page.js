@@ -27,13 +27,13 @@ export default function Contact() {
           className="space-y-8"
         >
           <div>
-            <h1 className="text-5xl font-extrabold mb-6 text-slate-900">Let's work together.</h1>
-            <p className="text-xl text-slate-600 leading-relaxed">
+            <h1 className="text-5xl font-extrabold mb-6 text-white">Let's work together.</h1>
+            <p className="text-xl text-slate-300 leading-relaxed">
               Contact {companyName} today for a free quote. Our team of experts is ready to help you with your next project.
             </p>
           </div>
 
-          <div className="space-y-6 pt-8 border-t border-slate-100">
+          <div className="space-y-6 pt-8 border-t border-slate-700">
             {[
               { icon: <Phone size={24} />, text: "(555) 123-4567" },
               { icon: <Mail size={24} />, text: `hello@${companyName.toLowerCase().replace(/[^a-z]/g, '')}.com` },
@@ -44,10 +44,10 @@ export default function Contact() {
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-4 text-lg cursor-pointer group"
               >
-                <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                <div className="w-14 h-14 bg-slate-800 text-emerald-400 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
                   {contactItem.icon}
                 </div>
-                <span className="font-medium text-slate-700 group-hover:text-emerald-600 transition-colors">{contactItem.text}</span>
+                <span className="font-medium text-slate-300 group-hover:text-emerald-400 transition-colors">{contactItem.text}</span>
               </motion.div>
             ))}
           </div>
@@ -58,20 +58,20 @@ export default function Contact() {
           initial="hidden"
           animate="show"
           variants={container}
-          className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-emerald-900/5 border border-slate-100"
+          className="bg-slate-800 p-8 md:p-10 rounded-3xl shadow-xl shadow-emerald-900/20 border border-slate-700"
         >
           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
             <motion.div variants={item}>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Full Name</label>
-              <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="John Doe" />
+              <label className="block text-sm font-semibold mb-2 text-slate-300">Full Name</label>
+              <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-600 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all bg-slate-700 focus:bg-slate-600 text-white placeholder-slate-400" placeholder="John Doe" />
             </motion.div>
             <motion.div variants={item}>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Email Address</label>
-              <input type="email" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all bg-slate-50 focus:bg-white text-slate-900" placeholder="john@example.com" />
+              <label className="block text-sm font-semibold mb-2 text-slate-300">Email Address</label>
+              <input type="email" className="w-full px-4 py-3 rounded-xl border border-slate-600 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all bg-slate-700 focus:bg-slate-600 text-white placeholder-slate-400" placeholder="john@example.com" />
             </motion.div>
             <motion.div variants={item}>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Message</label>
-              <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all resize-none bg-slate-50 focus:bg-white text-slate-900" placeholder="How can we help you?" />
+              <label className="block text-sm font-semibold mb-2 text-slate-300">Message</label>
+              <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-600 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all resize-none bg-slate-700 focus:bg-slate-600 text-white placeholder-slate-400" placeholder="How can we help you?" />
             </motion.div>
             <motion.div variants={item}>
               <motion.button 

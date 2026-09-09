@@ -24,7 +24,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-slate-900/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
@@ -33,7 +33,7 @@ export default function Navbar() {
                 {companyName.charAt(0)}
               </div>
             </motion.div>
-            <span className={`font-bold text-xl tracking-tight ${scrolled ? "text-slate-900" : "text-slate-900"}`}>
+            <span className={`font-bold text-xl tracking-tight text-white`}>
               {companyName}
             </span>
           </Link>
@@ -43,13 +43,13 @@ export default function Navbar() {
               const isActive = pathname === link.href;
               return (
                 <Link key={link.name} href={link.href} className="relative px-3 py-2 text-sm font-medium transition-colors">
-                  <span className={`relative z-10 ${isActive ? "text-emerald-700" : "text-slate-600 hover:text-emerald-600"}`}>
+                  <span className={`relative z-10 ${isActive ? "text-emerald-400" : "text-slate-300 hover:text-emerald-400"}`}>
                     {link.name}
                   </span>
                   {isActive && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute inset-0 bg-emerald-50 rounded-lg -z-0"
+                      className="absolute inset-0 bg-emerald-900/30 rounded-lg -z-0"
                       transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                     />
                   )}
@@ -62,7 +62,7 @@ export default function Navbar() {
           </div>
 
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-900">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -75,10 +75,10 @@ export default function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl"
+          className="md:hidden bg-slate-800 px-4 pt-2 pb-6 space-y-2 shadow-xl"
         >
           {links.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-3 rounded-lg font-medium ${pathname === link.href ? "bg-emerald-50 text-emerald-700" : "text-slate-600 hover:bg-slate-50"}`}>
+            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-3 rounded-lg font-medium ${pathname === link.href ? "bg-emerald-900/30 text-emerald-400" : "text-slate-300 hover:bg-slate-700"}`}>
               {link.name}
             </Link>
           ))}

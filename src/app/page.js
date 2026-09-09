@@ -34,11 +34,11 @@ export default function Home() {
             Welcome to the future of your business
           </motion.div>
           
-          <motion.h1 variants={item} className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 leading-tight">
+          <motion.h1 variants={item} className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 leading-tight">
             Elevate <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">{companyName}</span> to the Next Level.
           </motion.h1>
           
-          <motion.p variants={item} className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={item} className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
             Professional, reliable, and trusted by the community. We deliver excellence in every project we take on.
           </motion.p>
           
@@ -49,7 +49,7 @@ export default function Home() {
               </button>
             </Link>
             <Link href="/contact">
-              <button className="w-full sm:w-auto px-8 py-4 bg-white text-slate-800 border border-slate-200 rounded-full font-bold shadow-sm hover:border-emerald-200 hover:bg-emerald-50 transition-all">
+              <button className="w-full sm:w-auto px-8 py-4 bg-slate-800 text-white border border-slate-700 rounded-full font-bold shadow-sm hover:border-emerald-500 hover:bg-slate-700 transition-all">
                 Contact Us
               </button>
             </Link>
@@ -68,12 +68,12 @@ export default function Home() {
             { icon: <Zap className="w-8 h-8 text-amber-500" />, title: "Lightning Fast", desc: "Quick response times and efficient project completion." },
             { icon: <Star className="w-8 h-8 text-teal-500" />, title: "5-Star Quality", desc: "Top-rated service with hundreds of happy local customers." }
           ].map((feature, i) => (
-            <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mb-6">
+            <div key={i} className="bg-slate-800 p-8 rounded-3xl shadow-sm border border-slate-700 hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 rounded-2xl bg-slate-700 flex items-center justify-center mb-6">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">{feature.title}</h3>
-              <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
+              <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
+              <p className="text-slate-300 leading-relaxed">{feature.desc}</p>
             </div>
           ))}
         </motion.div>
